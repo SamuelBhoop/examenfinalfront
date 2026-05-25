@@ -7,20 +7,41 @@ import EmptyState from '../components/EmptyState'
 import { fetchDragons } from '../services/DragonService'
 
 export default function Home() {
-    const [dragons, setDragons] = useState([])
+    const [dragons, setDragons] = useState<any[]>([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState<string | null>(null)
     const [search, setSearch] = useState('')
 
-    // TODO: cargar dragones al montar
-    // TODO: Filtrar dragones
-    // TODO: Manejar estados
+    useEffect(() => {
+        const load = async () => {
+            try {
+                setLoading(true)
+                setError(null)
+                const data = await fetchDragons()
+                setDragons(data)
+            } catch (err: any) {
+                setError(err.message || 'Error al cargar los dragones (o pokemones tipo dragon)')
+            } finally {
+                setLoading(false)
+            }
+        }
+        load()
+    }, [])
 
+    const filtered = dragons.filter((dragon: any) => 
+        dragon.name.toLowerCase().includes(search.toLowerCase())
+    )
+    
     return (
-        // aplicar tailwindcss
         <div className="p-4">
             <SearchBar onSearch={setSearch} />
-            {/* Mostrar Loader, ErrorMessage, EmptyState o DragonList según estado */}
+
+            {loading && <Loader />}
+            {error && !loading && <ErrorMessage message={error} />}
+            {!loading && !error && filtered.length === 0 && <EmptyState />}
+            {!loading && !error && filtered.length > 0 && (
+                <DragonList dragons={filtered} />
+            )}
         </div>
     )
 }
