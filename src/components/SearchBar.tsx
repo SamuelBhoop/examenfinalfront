@@ -14,7 +14,7 @@ export default function SearchBar({ onSearch }: { onSearch: (value: string) => v
       value={value}
       onChange={handleChange}
       placeholder="Buscar dragones..."
-      className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      className="w-full p-3 border border-black rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
     />
   )
 }

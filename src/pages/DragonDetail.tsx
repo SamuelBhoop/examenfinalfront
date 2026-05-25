@@ -58,9 +58,9 @@ export default function DragonDetail() {
         />
 
         <div className="grid grid-cols-2 gap-4 mt-4">
-          <p><strong>ID:</strong> {dragon.id}</p>
+          <p><strong>Numero en Pokedex:</strong> {dragon.id}</p>
           <p><strong>Altura:</strong> {dragon.height}</p>
-          <p><strong>Peso:</strong> {dragon.weight}</p>
+          <p><strong>Peso Aproximado:</strong> {dragon.weight}</p>
           <p><strong>Tipos:</strong> {dragon.types.join(', ')}</p>
         </div>
 

@@ -7,7 +7,7 @@ export default function Favorites() {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl mb-4">Mis Favoritos</h1>
+            <h1 className="text-2xl mb-4">Favoritos guardados</h1>
             {favorites.length === 0 ? <EmptyState /> : <DragonList dragons={favorites} />}
         </div>
     )

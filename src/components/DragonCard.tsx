@@ -14,7 +14,7 @@ export default function DragonCard({ dragon }: { dragon: any }) {
   return (
     <Link
       to={`/dragon/${dragon.name}`}
-      className="bg-black rounded-lg shadow p-3 flex flex-col items-center hover:shadow-lg transition relative"
+      className="bg-blue-300 rounded-lg shadow p-3 flex flex-col items-center hover:shadow-lg transition relative"
     >
       <button
         onClick={toggleFavorite}
