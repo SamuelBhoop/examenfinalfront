@@ -2,24 +2,30 @@ import { createContext, useContext, useState } from 'react'
 
 const FavoritesContext = createContext(null)
 
-export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([])
+export function FavoritesProvider({ children }: { children: React.ReactNode }) {
+  const [favorites, setFavorites] = useState<any[]>([])
 
-  // TODO: Implementar función addFavorite(dragon)
-  // - Si el dragón ya está en favoritos, no hacer nada
-  // - Agregar el dragón al array de favoritos
+  const addFavorite = (dragon: any) => {
+    setFavorites((prev) => {
+      if (prev.some((d) => d.name === dragon.name)) return prev
+      return [...prev, dragon]
+    })
+  } 
 
-  // TODO: Implementar función removeFavorite(dragonName)
-  // - Filtrar el dragón del array por nombre
+  const removeFavorite = (dragonName: String) => {
+    setFavorites((prev) => prev.filter((d) => d.name !== dragonName))
 
-  // TODO: Implementar función isFavorite(dragonName)
-  // - Retornar true si el dragón ya está en favoritos
+  }
+  
+  const isFavorite = (dragonName: String) => {
+    return favorites.some((d) => d.name === dragonName)
+  }
 
   const value = {
     favorites,
-    // addFavorite,     // ← reemplazar con función real
-    // removeFavorite,  // ← reemplazar con función real
-    // isFavorite,      // ← reemplazar con función real
+    addFavorite,
+    removeFavorite,
+    isFavorite,
   }
 
   return (

@@ -4,7 +4,7 @@ import DragonList from '../components/DragonList'
 import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 import EmptyState from '../components/EmptyState'
-// import { fetchDragons } from '../services/dragonService'
+import { fetchDragons } from '../services/DragonService'
 
 export default function Home() {
     const [dragons, setDragons] = useState([])
